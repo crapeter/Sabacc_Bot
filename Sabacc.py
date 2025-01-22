@@ -97,6 +97,8 @@ async def join(ctx):
 
 	for _ in range(2):
 		stave = random.choice(list(deck.keys()))
+		if stave == "idiots":
+			stave = random.choice(list(deck.keys()))
 		card = random.choice(deck[stave])
 		if isinstance(card, bool) and card:  # Check if the card is an Idiot
 			hands[player.id].append("Idiot")
@@ -156,6 +158,8 @@ async def gain(ctx, discard: bool = False, idx: int = None):
 	# Simulate drawing a card from the deck
 	while True:
 		stave = random.choice(list(deck.keys()))
+		if stave == "idiots":
+			stave = random.choice(list(deck.keys()))
 		card = random.choice(deck[stave])
 		if isinstance(card, bool) and card and idiots_played >= 2:
 			continue
@@ -382,6 +386,8 @@ def rolled_double(player_id, cards):
 	for _ in range(total_cards):
 		while True:
 			stave = random.choice(list(deck.keys()))
+			if stave == "idiots":
+				stave = random.choice(list(deck.keys()))
 			card = random.choice(deck[stave])
 			if isinstance(card, bool) and card and idiots_played >= 2:
 				continue
