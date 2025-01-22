@@ -312,10 +312,8 @@ async def end(ctx):
 		return
 
 	# Checks that all players have taken three turns
-	if any(len(hands[player]) < 3 for player in players) and len(players) > 1:
-		await ctx.send(any(len(hands[player]) < 3 for player in players))
-		await ctx.send(len(players) > 1)
-		await ctx.send("All players must have taken three turns before ending the game.")
+	if any(rounds_played[player_id] < 3 for player_id in players.keys()):
+		await ctx.send("Not all players have finished their turns yet.")
 		return
 
 	# Goes through the players and prints the score of each player
